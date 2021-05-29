@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystry Number!</title>
+</head>
+<style>
+  body{
+    background-color: aqua;
+    color: black;
+    text-align:center;
+  }
+  .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+.container form{
+  border: 2px solid black;
+  background-color: blueviolet;
+}
+.container label{
+  margin: 15px 12px;
+  padding:8px 10px;
+  width: 500px;
+  font-size: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.container .inp{
+  padding: 13px 16px;
+  margin: 10px;
+  width: 50px;
+  border: 2px solid black;
+  font-size: 25px;
+}
+.btn{
+  margin: 13px 18px;
+  padding: 10px 15px;
+  font-size: 20px;
+  border: 2px solid black;
+  color:darkorange;
+  background-color: darkgreen;
+
+}
+.btn:hover{
+  cursor: pointer;
+  color:cornflowerblue
+}
+h3{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  background-color: darkorange;
+  color: black;
+  padding: 10px 0px;
+  font-style: italic;
+}
+
+h4{
+  font-family: serif;
+  font-size: 25px;
+  font-style: oblique;
+}
+.img{
+  border-radius: 50%;
+  height: 180px;
+  width: 180px;
+  overflow: hidden;
+  box-shadow: 12px 6px 12px black;
+}
+.danger{
+  background-color: red;
+  color: white;
+}
+</style>
+<body>
+    {%if cnt %} <p><strong><h3>chances left: {{cnt}} </h3></strong></p> {%endif%}
+    <h4><em>About Game: you have to find out random number between 0 to 100 by putting random value in the given input column then the program automatically tell weather your input value is samller / larger / or matches with that number. If your value matches with that number then you win the game.</em></h4>
+    <h4>ALL THE BEST...</h4>  
+    {% if msg %}
+      <p><strong><h4> {{msg}} </h4></strong></p>
+      {% endif %} 
+
+    {% if cnt > 0 %}
+    <div class="container">
+    <form action="after_form" name="myForm" onsubmit="return validateForm()" method="GET">
+                  
+      <label for="input">enter the no between 0 to 100</label>                
+      <input type="text" name="input" class="inp" id="input" aria-describedby="enter no" autofocus autocomplete="off"/>
+      <input type="hidden" name="count" value="{{cnt}}" /><br>
+      <input type="submit" value="Find" class="btn" />      
+                  
+                    
+
+</form>
+</div>
+{% else %}
+      {% if result %}
+      <p><strong><font color="red" class="txt">The no is : {{result}}</font></strong></p>
+      {% endif %}
+    <p><strong><font color="red"><a href="/" class="btn">Play Again</a></font></strong></p>
+                            
+{% endif %}
+
+<div class="box">
+  <h3>Programmed by : </h3>
+  <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="error" class="img">
+  <h2>AJAY GOSWAMI</h2>
+</div>
+</body>
+<script>
+  function validateForm() {
+  var x = document.forms["myForm"]["input"].value;
+  if (x == "") {
+    alert("enter the name of the dragon");
+    return false;
+  }
+}
+</script>
+</html>
